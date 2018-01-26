@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,笔记,Python安装," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Python有很多个不同的版本，而在各种操作系统中安装它的方式有很多。现在常用的版本有Python2和Python3，它也是Mac系统自带的Python版本2.7，做技术就要”喜新厌旧”，我这里就安装Python3的版本(只3.5+版本)。如果系统中安装的事Python3，那么有些使用Python2编写的代码可能无法正确任性。">
+<meta name="keywords" content="Python,笔记,Python安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装Python">
+<meta property="og:url" content="http://yoursite.com/2018/01/25/安装Python/index.html">
+<meta property="og:site_name" content="Wake Say">
+<meta property="og:description" content="Python有很多个不同的版本，而在各种操作系统中安装它的方式有很多。现在常用的版本有Python2和Python3，它也是Mac系统自带的Python版本2.7，做技术就要”喜新厌旧”，我这里就安装Python3的版本(只3.5+版本)。如果系统中安装的事Python3，那么有些使用Python2编写的代码可能无法正确任性。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/01/25/安装Python/python_homepage.png">
+<meta property="og:image" content="http://yoursite.com/2018/01/25/安装Python/python_download.png">
+<meta property="og:image" content="http://yoursite.com/2018/01/25/安装Python/Homebrew_hemepage.png">
+<meta property="og:image" content="http://yoursite.com/2018/01/25/安装Python/anaconda_download.png">
+<meta property="og:image" content="http://yoursite.com/2018/01/25/安装Python/tsinghua_mirror.png">
+<meta property="og:image" content="http://yoursite.com/2018/01/25/安装Python/pycharm_homepage.png">
+<meta property="og:image" content="http://yoursite.com/2018/01/25/安装Python/PyCharm_download.png">
+<meta property="og:image" content="http://yoursite.com/2018/01/25/安装Python/PyCharm_create_new_project.png">
+<meta property="og:image" content="http://yoursite.com/2018/01/25/安装Python/system_interpreter.png">
+<meta property="og:image" content="http://yoursite.com/2018/01/25/安装Python/select_python_interpreter.png">
+<meta property="og:image" content="http://yoursite.com/2018/01/25/安装Python/preferences.png">
+<meta property="og:image" content="http://yoursite.com/2018/01/25/安装Python/project.png">
+<meta property="og:image" content="http://yoursite.com/2018/01/25/安装Python/debug_hello.png">
+<meta property="og:updated_time" content="2018-01-26T09:14:47.611Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安装Python">
+<meta name="twitter:description" content="Python有很多个不同的版本，而在各种操作系统中安装它的方式有很多。现在常用的版本有Python2和Python3，它也是Mac系统自带的Python版本2.7，做技术就要”喜新厌旧”，我这里就安装Python3的版本(只3.5+版本)。如果系统中安装的事Python3，那么有些使用Python2编写的代码可能无法正确任性。">
+<meta name="twitter:image" content="http://yoursite.com/2018/01/25/安装Python/python_homepage.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'XJEPLP734O',
+      apiKey: '1ba74f4784976825d5dae82a70cc0a0b',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没找到与『${query}』相关的内容","hits_stats":"${hits} 条相关记录 耗时 ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/25/安装Python/"/>
+
+
+
+
+
+  <title>安装Python | Wake Say</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cec045dab0b436c71dab0a308de24ae4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wake Say</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">The most beautiful is hope!</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/25/安装Python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="范文琪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wake Say">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">安装Python</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-25T15:01:22+08:00">
+                2018-01-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/Python笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">Python笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">热度
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>℃
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2018/01/25/安装Python/python_homepage.png" alt="人生苦短，我用Python"><br>    <a href="https://www.python.org/" target="_blank" rel="noopener">Python</a>有很多个不同的版本，而在各种操作系统中安装它的方式有很多。现在常用的版本有Python2和Python3，它也是Mac系统自带的Python版本2.7，做技术就要”喜新厌旧”，我这里就安装Python3的版本(只3.5+版本)。如果系统中安装的事Python3，那么有些使用Python2编写的代码可能无法正确任性。</p>
+<a id="more"></a>
+<h3 id="在Mac中安装Python"><a href="#在Mac中安装Python" class="headerlink" title="在Mac中安装Python"></a>在Mac中安装Python</h3><blockquote>
+<p>  几乎所有Linux系统中都默认安装了Python，但是一般都不是最主流的版本。可以选确定下已近安装的Python版本。如果系统中安装的是Python2的版本，就自己安装Python3的版本。注意最好不要卸载删除系统默认的Python版本。</p>
+</blockquote>
+<h4 id="确定已安装的版本"><a href="#确定已安装的版本" class="headerlink" title="确定已安装的版本"></a>确定已安装的版本</h4><p>command + 空格键 打开搜索，输入item或者terminal打开终端窗口，执行一项命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python --version</span><br><span class="line">Python 2.7.6</span><br></pre></td></tr></table></figure></p>
+<p>如果输出Python 2.7.6 表明系统默认的版本是这个。但是系统可能还安装了一个Python3版本，为了核实这一点，执行命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python3 --version</span><br><span class="line">zsh: <span class="built_in">command</span> not found: python3</span><br></pre></td></tr></table></figure></p>
+<p>输出版本证明也安装了Python3，没有则输出command not found: python3，在安装版本前，有必要检查一下系统装有Python的几个版本，以便管理。</p>
+<h4 id="在Mac中安装Python3"><a href="#在Mac中安装Python3" class="headerlink" title="在Mac中安装Python3"></a>在Mac中安装Python3</h4><p>如果系统没有安装Python3，或者想换一个较新的Python3版本，可以上<a href="https://www.python.org/downloads/" target="_blank" rel="noopener">官网</a>下载最新版本进行安装,网站会自动辨别操作系统，直接点击左边最新版本下载安装即可。<br><img src="/2018/01/25/安装Python/python_download.png" alt="Python下载地址"></p>
+<h4 id="使用Homebrew来安装Python3"><a href="#使用Homebrew来安装Python3" class="headerlink" title="使用Homebrew来安装Python3"></a>使用Homebrew来安装Python3</h4><h5 id="安装Homebrew"><a href="#安装Homebrew" class="headerlink" title="安装Homebrew"></a>安装Homebrew</h5><p>Homebrew依赖于Apple的Xcode，所以保证Xcode是最新的版本，没有Xcode的话打开终端执行,有装Xcode保证是最新版本跳过此步骤：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ xcode-select --install</span><br></pre></td></tr></table></figure></p>
+<p>不断出现确认对话框都单击OK按钮。接下来安装Homebrew，<a href="https://brew.sh/" target="_blank" rel="noopener">官网</a>可以得到以下命令，有Xcode跳过此步骤：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ /usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/2018/01/25/安装Python/Homebrew_hemepage.png" alt="Homebrew主页"><br>安装时间长短看网络状况，确认Homebrew正确安装命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew doctor</span><br><span class="line">Your system is ready to brew.</span><br></pre></td></tr></table></figure></p>
+<h5 id="安装Python-3"><a href="#安装Python-3" class="headerlink" title="安装Python 3"></a>安装Python 3</h5><p>利用Homebrew查找Python，这个时候可以看到Python和Python3，执行命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew search python</span><br></pre></td></tr></table></figure></p>
+<p>安装最新版本的Python3，执行命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install python3</span><br></pre></td></tr></table></figure></p>
+<p>检查安装使用Homebrew安装的是什么版本，执行命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ python3 --version</span><br><span class="line">Python 3.6.3</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>  现在系统中有两个版本的Python，一个是系统默认的Python2.7，另一个是现在安装的Python3.6.3。在输入Python命令时执行的是系统默认的Python2.7的解释器，而需要运行最新版本的Python需要执行Python3。当然修改配置文件能解决这个问题。因为想使用Python做机器学深度学习等学习，所以我会安装Anaconda版本因为它包含了大量的科学计算依赖包，非常方便。</p>
+</blockquote>
+<h3 id="安装Anaconda"><a href="#安装Anaconda" class="headerlink" title="安装Anaconda"></a>安装Anaconda</h3><p>Anaconda是一个用于科学计算的Python发行版，支持Linux，Mac，Windows，包含了众多流行的科学计算、数据分析的Python包。</p>
+<h4 id="卸载Python3"><a href="#卸载Python3" class="headerlink" title="卸载Python3"></a>卸载Python3</h4><p>因为Anaconda带有最新版本的Python，为了避免安装过多版本的Python弄乱了环境，所以卸载刚刚安装的Python3，执行命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ brew uninstall python3</span><br><span class="line">Uninstalling /usr/<span class="built_in">local</span>/Cellar/python3</span><br></pre></td></tr></table></figure></p>
+<div class="note warning"><p>系统自带的Python2.7版本最好不要卸载</p></div>
+<h4 id="下载安装Anaconda"><a href="#下载安装Anaconda" class="headerlink" title="下载安装Anaconda"></a>下载安装Anaconda</h4><p><a href="https://www.anaconda.com/download/" target="_blank" rel="noopener">Anaconda官方下载地址</a>，打开后网站自动识别当前电脑是操作系统，然后选择左边的Python 3.6 version *版本下载。<br><img src="/2018/01/25/安装Python/anaconda_download.png" alt="Anaconda官方下载界面"><br>应为Anaconda的服务器在国外，所以导致很多时候安装包怎么也下载不了或者是非常的慢，这个时候我们也可以使用<a href="https://mirror.tuna.tsinghua.edu.cn/help/anaconda/" target="_blank" rel="noopener">清华大学开源软件镜像</a><br>。在此感谢那些提供免费镜像的个人和组织们。找到合适的系统安装包进行安装。<br><img src="/2018/01/25/安装Python/tsinghua_mirror.png" alt="清华大学开源镜像Anaconda页面"></p>
+<h4 id="测试安装是否正确"><a href="#测试安装是否正确" class="headerlink" title="测试安装是否正确"></a>测试安装是否正确</h4><p>运行一下命令都可以检测是否安装正确，系统环境变量是否设置正确(会自动把环境变量设置到配置文件中)。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">which</span> conda</span><br><span class="line">/anaconda3/bin/conda</span><br><span class="line">$ conda --version</span><br><span class="line">conda 4.3.30</span><br><span class="line">$ python --version</span><br><span class="line">Python 3.6.3 :: Anaconda, Inc.</span><br><span class="line">$ anaconda -V</span><br><span class="line">anaconda Command line client (version 1.6.5)</span><br></pre></td></tr></table></figure></p>
+<p>他们更分别表示anaconda的包管理工具conda的安装路径、conda的版本、Python的版本(Anaconda, Inc.)以及anaconda的版本</p>
+<div class="note danger"><p>注意如果执行以上命令出现环境变量无效或者，重启环境变量设置后就失效这种情况。查看<strong>~/.bash_profile</strong>配置文件发现有<br><strong>export PATH=”/anaconda3/bin:$PATH”</strong>配置,然后控制台输出<strong>zsh: command not found: homestead</strong>那么肯定是安装了zsh的<br>缘故，因为安装zsh，<strong>~/.bash_profile</strong>就不会执行，解决办法打开终端输入<strong>open ~/.zshrc</strong>添加配置<strong>source ~/.bash_profile</strong>，<br>这样<strong>~/.bash_profile</strong>配置的环境变量同样有效</p></div>
+<h3 id="安装PyCharm"><a href="#安装PyCharm" class="headerlink" title="安装PyCharm"></a>安装PyCharm</h3><p><img src="/2018/01/25/安装Python/pycharm_homepage.png" alt="PyCharm界面"><br>PyCharm是一种Python IDE，带有一整套可以帮助用户在使用Python语言开发时提高其效率的工具，比如调试、语法高亮、Project管理、代码跳转、智能提示、自动完成、单元测试、版本控制。此外，该IDE提供了一些高级功能，以用于支持Django框架下的专业Web开发。</p>
+<h4 id="下载PyCharm"><a href="#下载PyCharm" class="headerlink" title="下载PyCharm"></a>下载PyCharm</h4><p><a href="https://www.jetbrains.com/pycharm/" target="_blank" rel="noopener">PyCharm官网</a>点击<strong>DOWNLOAD NOW</strong>按钮，选择<strong>Community</strong>版本下载安装包，如果有注册码或者是jetbrains<br>账号可以选择强大的<strong>Professional</strong>版本选择下载安装。<br><img src="/2018/01/25/安装Python/PyCharm_download.png" alt="PyCharm下载界面"></p>
+<h4 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h4><p>点击<strong>Create New Project</strong> 按钮，新建项目，选择<strong>Prue Python</strong> 输入项目地址和名称，选择下方<strong>Existing interpreter</strong>选择本地解释器。<br><img src="/2018/01/25/安装Python/PyCharm_create_new_project.png" alt="Create New Project"><br>选择<strong>System interpreter</strong> ，点击右上角的选择文件按钮，选择本地解释器<br><img src="/2018/01/25/安装Python/system_interpreter.png" alt="system interpreter"><br>选择<strong>/anaconda3/bin/</strong>目录底下的Python3.6文件<br><img src="/2018/01/25/安装Python/select_python_interpreter.png" alt="anaconda python"><br>设置项目的interpreter<br><img src="/2018/01/25/安装Python/preferences.png" alt="preferences"><br>点击preferences后选择<strong>project Hello_python</strong>，选择<strong><em>project interpreter</em>，最后选择anaconda版本的Python<br><img src="/2018/01/25/安装Python/project.png" alt="project interpreter"><br>鼠标右键点击项目选择</strong>New<strong>新建</strong>Python File**文件命名为hello，在文件里输入：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">print</span>(<span class="string">"Hello Python!"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>鼠标右键文件界面点击<strong>Run ‘hello’</strong> 或者<strong>debug ‘hello’</strong>运行项目。<br><img src="/2018/01/25/安装Python/debug_hello.png" alt="debug"><br>低下Terminal会给出相应的输出<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Connected to pydev debugger (build 173.4301.16)</span><br><span class="line">Hello Python!</span><br><span class="line"></span><br><span class="line">Process finished with <span class="built_in">exit</span> code 0</span><br></pre></td></tr></table></figure></p>
+<p>到此Python的开发环境全部安装完毕！</p>
+<div class="note primary"><p>第一次写博客，整整写了两天。再接再厉</p></div>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/笔记/" rel="tag"># 笔记</a>
+          
+            <a href="/tags/Python安装/" rel="tag"># Python安装</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/20/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="范文琪" />
+            
+              <p class="site-author-name" itemprop="name">范文琪</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/deepinWake" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:hi.fanwenqi@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/u/0/107525761583923308196" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jianshu.com/u/44339a8a9afa" title="程序员联盟" target="_blank">程序员联盟</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://mp.weixin.qq.com/mp/homepage?__biz=MzAwODU3NTMzNg==&hid=2&sn=cef6b0b0143f190aab7ba822115a4e60&scene=18#wechat_redirect" title="jimin" target="_blank">jimin</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://mp.weixin.qq.com/s/88Y8zf56k6ncIcVKvQj6-w" title="Geely" target="_blank">Geely</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.devio.org/" title="CrazyCodeBoy" target="_blank">CrazyCodeBoy</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#在Mac中安装Python"><span class="nav-number">1.</span> <span class="nav-text">在Mac中安装Python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#确定已安装的版本"><span class="nav-number">1.1.</span> <span class="nav-text">确定已安装的版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在Mac中安装Python3"><span class="nav-number">1.2.</span> <span class="nav-text">在Mac中安装Python3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Homebrew来安装Python3"><span class="nav-number">1.3.</span> <span class="nav-text">使用Homebrew来安装Python3</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#安装Homebrew"><span class="nav-number">1.3.1.</span> <span class="nav-text">安装Homebrew</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#安装Python-3"><span class="nav-number">1.3.2.</span> <span class="nav-text">安装Python 3</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Anaconda"><span class="nav-number">2.</span> <span class="nav-text">安装Anaconda</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#卸载Python3"><span class="nav-number">2.1.</span> <span class="nav-text">卸载Python3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载安装Anaconda"><span class="nav-number">2.2.</span> <span class="nav-text">下载安装Anaconda</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试安装是否正确"><span class="nav-number">2.3.</span> <span class="nav-text">测试安装是否正确</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装PyCharm"><span class="nav-number">3.</span> <span class="nav-text">安装PyCharm</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载PyCharm"><span class="nav-number">3.1.</span> <span class="nav-text">下载PyCharm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新建项目"><span class="nav-number">3.2.</span> <span class="nav-text">新建项目</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">范文琪</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+  
+  
+    <script id="ribbon" type="text/javascript" size="300" alpha="0.6"  zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
