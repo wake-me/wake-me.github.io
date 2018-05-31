@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'XJEPLP734O',
+      apiKey: '1ba74f4784976825d5dae82a70cc0a0b',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没找到与『${query}』相关的内容","hits_stats":"${hits} 条相关记录 耗时 ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Spring Cloud为开发人员提供了快速构建分布式系统中一些常见模式的工具（例如配置管理，服务发现，断路器，智能路由，微代理，控制总线，一次性令牌，全局锁定，领导选举，分布式会话，群集状态）。分布式系统的协调套路模板，使用Spring Cloud开发人员可以快速站出实现这些模式的服务和应用程序。他们可以在任何分布式环境中运行良好，包括开发人员自己的笔记本电脑，裸机数据中心和托管平台，如Clo">
+<meta name="keywords" content="Spring,Spring Cloud,Java,微服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Cloud">
+<meta property="og:url" content="http://yoursite.com/2018/05/17/Spring Cloud/index.html">
+<meta property="og:site_name" content="Wake Say">
+<meta property="og:description" content="Spring Cloud为开发人员提供了快速构建分布式系统中一些常见模式的工具（例如配置管理，服务发现，断路器，智能路由，微代理，控制总线，一次性令牌，全局锁定，领导选举，分布式会话，群集状态）。分布式系统的协调套路模板，使用Spring Cloud开发人员可以快速站出实现这些模式的服务和应用程序。他们可以在任何分布式环境中运行良好，包括开发人员自己的笔记本电脑，裸机数据中心和托管平台，如Clo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/05/17/Spring%20Cloud/spring_cloud.png">
+<meta property="og:image" content="http://yoursite.com/2018/05/17/Spring%20Cloud/spring_cloud2.png">
+<meta property="og:updated_time" content="2018-05-18T03:28:51.233Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Cloud">
+<meta name="twitter:description" content="Spring Cloud为开发人员提供了快速构建分布式系统中一些常见模式的工具（例如配置管理，服务发现，断路器，智能路由，微代理，控制总线，一次性令牌，全局锁定，领导选举，分布式会话，群集状态）。分布式系统的协调套路模板，使用Spring Cloud开发人员可以快速站出实现这些模式的服务和应用程序。他们可以在任何分布式环境中运行良好，包括开发人员自己的笔记本电脑，裸机数据中心和托管平台，如Clo">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/17/Spring%20Cloud/spring_cloud.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/17/Spring Cloud/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Spring Cloud | Wake Say</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cec045dab0b436c71dab0a308de24ae4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wake Say</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">The most beautiful is hope!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/17/Spring Cloud/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="范文琪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wake Say">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring Cloud
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-17 09:41:52" itemprop="dateCreated datePublished" datetime="2018-05-17T09:41:52+08:00">2018-05-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-05-18 11:28:51" itemprop="dateModified" datetime="2018-05-18T11:28:51+08:00">2018-05-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/微服务/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/微服务/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2018/05/17/Spring Cloud/spring_cloud.png" alt="Spring Cloud"></p>
+<p><a href="http://projects.spring.io/spring-cloud/" target="_blank" rel="noopener">Spring Cloud</a>为开发人员提供了快速构建分布式系统中一些常见模式的工具（例如配置管理，服务发现，断路器，智能路由，微代理，控制总线，一次性令牌，全局锁定，领导选举，分布式会话，群集状态）。分布式系统的协调套路模板，使用Spring Cloud开发人员可以快速站出实现这些模式的服务和应用程序。他们可以在任何分布式环境中运行良好，包括开发人员自己的笔记本电脑，裸机数据中心和托管平台，如Cloud Foundry。</p>
+<a id="more"></a>
+<h3 id="Spring-Cloud和微服务的关系？"><a href="#Spring-Cloud和微服务的关系？" class="headerlink" title="Spring Cloud和微服务的关系？"></a>Spring Cloud和微服务的关系？</h3><p><img src="/2018/05/17/Spring Cloud/spring_cloud2.png" alt="Spring Cloud"></p>
+<blockquote>
+<p>Spring框架作为JavaEE的基石一直在快速的发展，而Spring Boot在Spring的上一层，它基于Spring来构建，可以理解为Spring Boot是对Spring的一种简化，快速构建Spring应用。而Spring Cloud又是在Spring Boot之上，Spring Cloud可以理解为利用Spring Boot简化构建分布式应用。</p>
+</blockquote>
+<h3 id="Spring-Cloud是什么"><a href="#Spring-Cloud是什么" class="headerlink" title="Spring Cloud是什么"></a>Spring Cloud是什么</h3><p>####Spring Cloud是一个开放工具集，吸收了很多优秀框架</p>
+<ul>
+<li>利用Spring Boot的开发便利性实现了很多功能，例：服务注册与发现、负载均衡、数据监控、RestAPI发布方式等等。。。</li>
+<li>主要是基于对Netflix开源组件的进一步封装</li>
+</ul>
+<h4 id="Spring-Cloud简化了分布式开发"><a href="#Spring-Cloud简化了分布式开发" class="headerlink" title="Spring Cloud简化了分布式开发"></a>Spring Cloud简化了分布式开发</h4><h3 id="Spring-Cloud集成相关项目"><a href="#Spring-Cloud集成相关项目" class="headerlink" title="Spring Cloud集成相关项目"></a>Spring Cloud集成相关项目</h3><h4 id="Spring-Cloud-Config"><a href="#Spring-Cloud-Config" class="headerlink" title="Spring Cloud Config"></a><a href="https://springcloud.cc/spring-cloud-config.html" target="_blank" rel="noopener">Spring Cloud Config</a></h4><p>Spring配置管理工具包，让你可以把配置放到远程服务器，集中化管理集群配置，目前支持本地存储、Git以及Subversion。</p>
+<h4 id="Spring-Cloud-Bus"><a href="#Spring-Cloud-Bus" class="headerlink" title="Spring Cloud Bus"></a><a href="https://github.com/spring-cloud/spring-cloud-bus" target="_blank" rel="noopener">Spring Cloud Bus</a></h4><p>Spring事件、消息总线，用于在集群（例如，配置变化事件）中传播状态变化，可与Spring Cloud Config联合实现热部署。</p>
+<h4 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a><a href="https://github.com/Netflix/eureka" target="_blank" rel="noopener">Eureka</a></h4><p>Netflix云端服务发现，一个基于 REST 的服务，用于定位服务，以实现云端中间层服务发现和故障转移。</p>
+<h4 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a><a href="https://github.com/Netflix/hystrix" target="_blank" rel="noopener">Hystrix</a></h4><p>Netflix熔断器，容错管理工具，旨在通过熔断机制控制服务和第三方库的节点,从而对延迟和故障提供更强大的容错能力。</p>
+<h4 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a><a href="https://github.com/Netflix/zuul" target="_blank" rel="noopener">Zuul</a></h4><p>Netflix Zuul 是在云平台上提供动态路由,监控,弹性,安全等边缘服务的框架。Zuul 相当于是设备和 Netflix 流应用的 Web 网站后端所有请求的前门。</p>
+<h4 id="Archaius"><a href="#Archaius" class="headerlink" title="Archaius"></a><a href="https://github.com/Netflix/archaius" target="_blank" rel="noopener">Archaius</a></h4><p>Netflix 配置管理API，包含一系列配置管理API，提供动态类型化属性、线程安全配置操作、轮询框架、回调机制等功能。</p>
+<h4 id="Consul"><a href="#Consul" class="headerlink" title="Consul"></a><a href="https://github.com/HashiCorp/consul" target="_blank" rel="noopener">Consul</a></h4><p>HashiCorp封装了Consul操作，consul是一个服务发现与配置工具，与Docker容器可以无缝集成。</p>
+<h4 id="Spring-Cloud-for-Cloud-Foundry"><a href="#Spring-Cloud-for-Cloud-Foundry" class="headerlink" title="Spring Cloud for Cloud Foundry"></a><a href="https://github.com/spring-cloud/spring-cloud-cloudfoundry" target="_blank" rel="noopener">Spring Cloud for Cloud Foundry</a></h4><p>Pivotal通过Oauth2协议绑定服务到CloudFoundry，CloudFoundry是VMware推出的开源PaaS云平台。</p>
+<h4 id="Spring-Cloud-Sleuth"><a href="#Spring-Cloud-Sleuth" class="headerlink" title="Spring Cloud Sleuth"></a><a href="https://github.com/spring-cloud/spring-cloud-sleuth" target="_blank" rel="noopener">Spring Cloud Sleuth</a></h4><p>Spring 日志收集工具包，封装了Dapper和log-based追踪以及Zipkin和HTrace操作，为SpringCloud应用实现了一种分布式追踪解决方案。</p>
+<h4 id="Spring-Cloud-Security"><a href="#Spring-Cloud-Security" class="headerlink" title="Spring Cloud Security"></a><a href="https://github.com/spring-cloud/spring-cloud-security" target="_blank" rel="noopener">Spring Cloud Security</a></h4><p>Spring 基于spring security的安全工具包，为你的应用程序添加安全控制。</p>
+<h4 id="Spring-Cloud-Zookeeper"><a href="#Spring-Cloud-Zookeeper" class="headerlink" title="Spring Cloud Zookeeper"></a><a href="https://github.com/spring-cloud/spring-cloud-zookeeper" target="_blank" rel="noopener">Spring Cloud Zookeeper</a></h4><p>Spring 操作Zookeeper的工具包，用于使用zookeeper方式的服务发现和配置管理。</p>
+<h4 id="Spring-Cloud-Stream"><a href="#Spring-Cloud-Stream" class="headerlink" title="Spring Cloud Stream"></a><a href="https://github.com/spring-cloud/spring-cloud-stream" target="_blank" rel="noopener">Spring Cloud Stream</a></h4><p>Spring 数据流操作开发包，封装了与Redis,Rabbit、Kafka等发送接收消息。</p>
+<h4 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a><a href="https://github.com/Netflix/ribbon" target="_blank" rel="noopener">Ribbon</a></h4><p>Netflix 提供云端负载均衡，有多种负载均衡策略可供选择，可配合服务发现和断路器使用。</p>
+<h4 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a><a href="https://github.com/OpenFeign/feign" target="_blank" rel="noopener">Feign</a></h4><p>OpenFeign Feign是一种声明式、模板化的HTTP客户端。</p>
+<h4 id="Spring-Cloud-Task"><a href="#Spring-Cloud-Task" class="headerlink" title="Spring Cloud Task"></a><a href="https://github.com/spring-cloud/spring-cloud-task" target="_blank" rel="noopener">Spring Cloud Task</a></h4><p>Spring提供云端计划任务管理、任务调度。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+            <a href="/tags/Spring-Cloud/" rel="tag"># Spring Cloud</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/微服务/" rel="tag"># 微服务</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/07/日志的使用/" rel="next" title="日志的使用">
+                <i class="fa fa-chevron-left"></i> 日志的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/18/eureka/" rel="prev" title="Spring Cloud Eureka">
+                Spring Cloud Eureka <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="范文琪" />
+            
+              <p class="site-author-name" itemprop="name">范文琪</p>
+              <p class="site-description motion-element" itemprop="description">Do what you love!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/deepinWake" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:hi.fanwenqi@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/u/0/107525761583923308196" target="_blank" title="Google"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jianshu.com/u/44339a8a9afa" title="程序员联盟" target="_blank">程序员联盟</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://mp.weixin.qq.com/mp/homepage?__biz=MzAwODU3NTMzNg==&hid=2&sn=cef6b0b0143f190aab7ba822115a4e60&scene=18#wechat_redirect" title="jimin" target="_blank">jimin</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://mp.weixin.qq.com/s/88Y8zf56k6ncIcVKvQj6-w" title="Geely" target="_blank">Geely</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.devio.org/" title="CrazyCodeBoy" target="_blank">CrazyCodeBoy</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud和微服务的关系？"><span class="nav-number">1.</span> <span class="nav-text">Spring Cloud和微服务的关系？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud是什么"><span class="nav-number">2.</span> <span class="nav-text">Spring Cloud是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Cloud简化了分布式开发"><span class="nav-number">2.1.</span> <span class="nav-text">Spring Cloud简化了分布式开发</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud集成相关项目"><span class="nav-number">3.</span> <span class="nav-text">Spring Cloud集成相关项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Cloud-Config"><span class="nav-number">3.1.</span> <span class="nav-text">Spring Cloud Config</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Cloud-Bus"><span class="nav-number">3.2.</span> <span class="nav-text">Spring Cloud Bus</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Eureka"><span class="nav-number">3.3.</span> <span class="nav-text">Eureka</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hystrix"><span class="nav-number">3.4.</span> <span class="nav-text">Hystrix</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Zuul"><span class="nav-number">3.5.</span> <span class="nav-text">Zuul</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Archaius"><span class="nav-number">3.6.</span> <span class="nav-text">Archaius</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Consul"><span class="nav-number">3.7.</span> <span class="nav-text">Consul</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Cloud-for-Cloud-Foundry"><span class="nav-number">3.8.</span> <span class="nav-text">Spring Cloud for Cloud Foundry</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Cloud-Sleuth"><span class="nav-number">3.9.</span> <span class="nav-text">Spring Cloud Sleuth</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Cloud-Security"><span class="nav-number">3.10.</span> <span class="nav-text">Spring Cloud Security</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Cloud-Zookeeper"><span class="nav-number">3.11.</span> <span class="nav-text">Spring Cloud Zookeeper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Cloud-Stream"><span class="nav-number">3.12.</span> <span class="nav-text">Spring Cloud Stream</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ribbon"><span class="nav-number">3.13.</span> <span class="nav-text">Ribbon</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Feign"><span class="nav-number">3.14.</span> <span class="nav-text">Feign</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Cloud-Task"><span class="nav-number">3.15.</span> <span class="nav-text">Spring Cloud Task</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">范文琪</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.4.4</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+  
+  
+    <script id="ribbon" type="text/javascript" size="300" alpha="0.6"  zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

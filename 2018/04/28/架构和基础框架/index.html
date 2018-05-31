@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'XJEPLP734O',
+      apiKey: '1ba74f4784976825d5dae82a70cc0a0b',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没找到与『${query}』相关的内容","hits_stats":"${hits} 条相关记录 耗时 ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="背景近十年来，互联网服务在社交网络、搜索、电商、O2O、视频、移动和云计算等领域呈现了喷井式发展，伴随而来的是数千万的日订单量、数亿的日活跃用户、数百亿的日消息发送量等海量的业务规模。支撑这些海量的业务规模的则是基于廉价服务器集群的高可用、可伸缩的分布式互联网技术。">
+<meta name="keywords" content="微服务,架构,框架,分布式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="架构和基础框架">
+<meta property="og:url" content="http://yoursite.com/2018/04/28/架构和基础框架/index.html">
+<meta property="og:site_name" content="Wake Say">
+<meta property="og:description" content="背景近十年来，互联网服务在社交网络、搜索、电商、O2O、视频、移动和云计算等领域呈现了喷井式发展，伴随而来的是数千万的日订单量、数亿的日活跃用户、数百亿的日消息发送量等海量的业务规模。支撑这些海量的业务规模的则是基于廉价服务器集群的高可用、可伸缩的分布式互联网技术。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2018/04/28/架构和基础框架/dubbo_system_evolution.png">
+<meta property="og:updated_time" content="2018-05-18T03:11:26.598Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="架构和基础框架">
+<meta name="twitter:description" content="背景近十年来，互联网服务在社交网络、搜索、电商、O2O、视频、移动和云计算等领域呈现了喷井式发展，伴随而来的是数千万的日订单量、数亿的日活跃用户、数百亿的日消息发送量等海量的业务规模。支撑这些海量的业务规模的则是基于廉价服务器集群的高可用、可伸缩的分布式互联网技术。">
+<meta name="twitter:image" content="http://yoursite.com/2018/04/28/架构和基础框架/dubbo_system_evolution.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/28/架构和基础框架/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>架构和基础框架 | Wake Say</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cec045dab0b436c71dab0a308de24ae4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Wake Say</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">The most beautiful is hope!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/28/架构和基础框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="范文琪">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wake Say">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">架构和基础框架
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-04-28 09:58:32" itemprop="dateCreated datePublished" datetime="2018-04-28T09:58:32+08:00">2018-04-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-05-18 11:11:26" itemprop="dateModified" datetime="2018-05-18T11:11:26+08:00">2018-05-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/架构/" itemprop="url" rel="index"><span itemprop="name">架构</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/架构/Java架构/" itemprop="url" rel="index"><span itemprop="name">Java架构</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/2018/04/28/架构和基础框架/dubbo_system_evolution.png" alt="Dubbo Architecture Roadmap"><br>    <a href="http://dubbo.incubator.apache.org/books/dubbo-user-book/preface/background.html" target="_blank" rel="noopener">背景</a>近十年来，互联网服务在社交网络、搜索、电商、O2O、视频、移动和云计算等领域呈现了喷井式发展，伴随而来的是数千万的日订单量、数亿的日活跃用户、数百亿的日消息发送量等海量的业务规模。支撑这些海量的业务规模的则是基于廉价服务器集群的高可用、可伸缩的分布式互联网技术。<br><a id="more"></a></p>
+<h3 id="架构的演进"><a href="#架构的演进" class="headerlink" title="架构的演进"></a>架构的演进</h3><blockquote>
+<p>  随着互联网的发展，网站应用的规模不断扩大，常规的垂直应用架构已无法应对，分布式服务架构以及流动计算架构势在必行，亟需一个治理系统确保架构有条不紊的演进。</p>
+</blockquote>
+<h4 id="单一应用架构"><a href="#单一应用架构" class="headerlink" title="单一应用架构"></a>单一应用架构</h4><ul>
+<li>当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。此时，用于简化增删改查工作量的数据访问框架(ORM)是关键。</li>
+<li>优点：容易测试、容易部署</li>
+<li>缺点：开发效率低、代码维护难、部署不灵活(build时间长)、稳定性不高(牵一发，动全身)、扩展性不够</li>
+</ul>
+<h4 id="垂直应用架构"><a href="#垂直应用架构" class="headerlink" title="垂直应用架构"></a>垂直应用架构</h4><ul>
+<li>当访问量逐渐增大，单一应用增加机器带来的加速度越来越小，将应用拆成互不相干的几个应用，以提升效率。此时，用于加速前端页面开发的Web框架(MVC)是关键。</li>
+</ul>
+<h4 id="分布式服务架构"><a href="#分布式服务架构" class="headerlink" title="分布式服务架构"></a>分布式服务架构</h4><ul>
+<li>当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求。此时，用于提高业务复用及整合的分布式服务框架(RPC、FEIGN)是关键。</li>
+<li>旨在支持应用程序和服务的开发，可以利用物理架构。由多个自治的处理元素，不共享主内存，但通过网络发送消息合作。</li>
+</ul>
+<h4 id="流动计算架构"><a href="#流动计算架构" class="headerlink" title="流动计算架构"></a>流动计算架构</h4><p>当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。此时，用于提高机器利用率的资源调度和治理中心(SOA)是关键。</p>
+<h3 id="微服务SOA"><a href="#微服务SOA" class="headerlink" title="微服务SOA"></a>微服务SOA</h3><blockquote>
+<p>实现微服务架构层面来说不一定需要Spring Cloud，国内主流的有两大派系：<strong>阿里系</strong> 和 <strong>Spring Cloud栈</strong>。阿里系国内用的非常多，而Spring Cloud是一个微服务的一站式解决方案集成了很多微服务框架。微服务是一种架构风格。</p>
+</blockquote>
+<h4 id="微服务特点"><a href="#微服务特点" class="headerlink" title="微服务特点"></a>微服务特点</h4><ul>
+<li>a suite of small services 一系列微小的服务共同组成</li>
+<li>running in its own process 跑在自己的进程里，任何的微服务都有自己独立的进程，互不干扰</li>
+<li>built around business capabilities  每个服务为独立的业务开发</li>
+<li>independently deployable 独立部署，互不干扰</li>
+<li>a bare minimum of centralized management of these services 分布式的管理</li>
+</ul>
+<h4 id="阿里系"><a href="#阿里系" class="headerlink" title="阿里系"></a>阿里系</h4><ul>
+<li>Dubbo  做服务化治理</li>
+<li>Zookeeper 做服务注册中心</li>
+<li>Spring MVC or SpringBoot 做基础框架</li>
+<li>RocketMQ  消息队列</li>
+</ul>
+<h4 id="Spring-Cloud栈"><a href="#Spring-Cloud栈" class="headerlink" title="Spring Cloud栈"></a>Spring Cloud栈</h4><ul>
+<li>Spring Cloud</li>
+<li>Netflix Eureka 服务注册发现</li>
+<li>SpringBoot  基础框架</li>
+</ul>
+<h4 id="微服务架构的基础框架-组件"><a href="#微服务架构的基础框架-组件" class="headerlink" title="微服务架构的基础框架/组件"></a>微服务架构的基础框架/组件</h4><ul>
+<li>服务注册发现</li>
+<li>服务网关(对外屏蔽服务细节，比如后台升级或者有一些变化，但是我对外是无感知的。路由功能，可以将外部请求路由到某个具体的微服务中去，还可以做一些限流和容错功能。做监控、日志、安全)</li>
+<li>后端通用服务(中间层服务Middle Tier Service，后端服务在启动的时候将地址信息注册到注册表里面，而前端服务通过查询注册表然后调用后端服务。)</li>
+<li>前端服务(边缘服务Edge Service，对后端的服务做必要的聚合裁剪后暴露给外部不同的设备)</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/微服务/" rel="tag"># 微服务</a>
+          
+            <a href="/tags/架构/" rel="tag"># 架构</a>
+          
+            <a href="/tags/框架/" rel="tag"># 框架</a>
+          
+            <a href="/tags/分布式/" rel="tag"># 分布式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/27/变量和简单的数据类型/" rel="next" title="变量和简单的数据类型">
+                <i class="fa fa-chevron-left"></i> 变量和简单的数据类型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/07/日志的使用/" rel="prev" title="日志的使用">
+                日志的使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="范文琪" />
+            
+              <p class="site-author-name" itemprop="name">范文琪</p>
+              <p class="site-description motion-element" itemprop="description">Do what you love!</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/deepinWake" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:hi.fanwenqi@gmail.com" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://plus.google.com/u/0/107525761583923308196" target="_blank" title="Google"><i class="fa fa-fw fa-google"></i>Google</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.jianshu.com/u/44339a8a9afa" title="程序员联盟" target="_blank">程序员联盟</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://mp.weixin.qq.com/mp/homepage?__biz=MzAwODU3NTMzNg==&hid=2&sn=cef6b0b0143f190aab7ba822115a4e60&scene=18#wechat_redirect" title="jimin" target="_blank">jimin</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://mp.weixin.qq.com/s/88Y8zf56k6ncIcVKvQj6-w" title="Geely" target="_blank">Geely</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.devio.org/" title="CrazyCodeBoy" target="_blank">CrazyCodeBoy</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#架构的演进"><span class="nav-number">1.</span> <span class="nav-text">架构的演进</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单一应用架构"><span class="nav-number">1.1.</span> <span class="nav-text">单一应用架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垂直应用架构"><span class="nav-number">1.2.</span> <span class="nav-text">垂直应用架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式服务架构"><span class="nav-number">1.3.</span> <span class="nav-text">分布式服务架构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流动计算架构"><span class="nav-number">1.4.</span> <span class="nav-text">流动计算架构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微服务SOA"><span class="nav-number">2.</span> <span class="nav-text">微服务SOA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#微服务特点"><span class="nav-number">2.1.</span> <span class="nav-text">微服务特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阿里系"><span class="nav-number">2.2.</span> <span class="nav-text">阿里系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Cloud栈"><span class="nav-number">2.3.</span> <span class="nav-text">Spring Cloud栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#微服务架构的基础框架-组件"><span class="nav-number">2.4.</span> <span class="nav-text">微服务架构的基础框架/组件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">范文琪</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.4.4</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+  
+  
+    <script id="ribbon" type="text/javascript" size="300" alpha="0.6"  zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
